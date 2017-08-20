@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/hinrek'
+let g:netrw_dirhist_2='/home/hinrek/Git/dotfiles/vim/.vim'
+let g:netrw_dirhist_3='/home/hinrek/Git/dotfiles/vim/.vim/bundle'
+let g:netrw_dirhist_4='/home/hinrek/Git/dotfiles/vim/.vim/pack'
+let g:netrw_dirhist_5='/home/hinrek/Git/dotfiles/vim/.vim'
