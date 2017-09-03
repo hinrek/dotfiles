@@ -1,3 +1,6 @@
+" SET CORRECT SHELL:
+set shell=/bin/bash
+
 " BASIC STUFF:
 " turn vim into vim not vi
 set nocompatible
@@ -6,6 +9,8 @@ set nocompatible
 set encoding=utf8
 
 
+" NEEDED FOR VUNDLE:
+filetype off
 " VUNDLE STUFF:
 " set the runtime path to include Vundle and init
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,6 +23,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-bufferline'
 Plugin 'Yggdroot/indentLine'
 Plugin 'chriskempson/base16-vim'
+Plugin 'scrooloose/nerdtree'
+
 
 
 " ALL PLUGINS BEFORE:
@@ -168,4 +175,12 @@ let g:netrw_list_hide.=',\(^\(|\s\s\)\zs\.\S\+'
 " SNIPPETS:
 " Read any empty HTML template and move cursor to title
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
+
+
+" NERD TREE:
+map <C-n> :NERDTreeToggle<CR>
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '▸'
+let NERDTreeShowHidden=1
 
