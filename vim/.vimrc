@@ -1,5 +1,5 @@
 " SET CORRECT SHELL:
-set shell=/bin/bash
+set shell=/usr/local/bin/zsh
 
 " BASIC STUFF:
 " turn vim into vim not vi
@@ -24,7 +24,9 @@ Plugin 'bling/vim-bufferline'
 Plugin 'Yggdroot/indentLine'
 Plugin 'chriskempson/base16-vim'
 Plugin 'scrooloose/nerdtree'
-
+Plugin 'w0rp/ale'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 
 " ALL PLUGINS BEFORE:
@@ -37,6 +39,16 @@ set number
 set relativenumber
 set ruler
 
+" line numbers & relative numbers on normal and insert mode
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" use 256 colors
+let base16colorspace=256 
+
 " enable syntax and plugins
 syntax enable
 filetype plugin indent on
@@ -47,6 +59,9 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set softtabstop=4
+
+" vim updatetime
+set updatetime=250
 
 " allways display the status line
 set laststatus=2
@@ -64,14 +79,27 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " THEME AND STYLE:
 " to enable 256 colors in vim
-set t_Co=256
+"set t_Co=256
 
 " vim colors from terminal
-set termguicolors
+" set termguicolors
 
 " vim theme (lifepillar/vim-solarized8)
 " colorscheme solarized8_dark
 colorscheme base16-flat
+
+
+" BUFFERS:
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+" <leader> = "\"
+nmap <leader>T :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
 
 
 " INDENT LINE:
@@ -86,8 +114,8 @@ let g:indentLine_leadingSpaceChar = '·'
 
 " FIXES:
 " small color fix
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " enable italic font support
 let g:solarized_term_italics=1
@@ -126,7 +154,8 @@ set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
-set path+=**
+"set path+=**
+set path=$PWD/**
 
 " Display all matching files when tab complete
 set wildmenu
@@ -177,6 +206,10 @@ let g:netrw_list_hide.=',\(^\(|\s\s\)\zs\.\S\+'
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
 
 
+" FIX BACKSPACE:
+set backspace=indent,eol,start
+
+
 " NERD TREE:
 map <C-n> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -184,3 +217,47 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeDirArrowExpandable = '▸'
 let NERDTreeShowHidden=1
 
+" GITGUTTER:
+" Disable gitgutter automatic key mapping
+let g:gitgutter_map_keys = 0
+
+" ALE OUTOFIX ON SAVE:
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+
+
+" ALE SYNTAX AUTOFIX:
+" Put this in vimrc or a plugin file of your own.
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\   'python': ['autopep8'],
+\}
+
+" ALE AIRLINE:
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+
+
+" PYTHON STUFF:
+au BufNewFile,BufRead *.py
+    \ set modeline |
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+
+" JAVASCRIPT HTML CSS:
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
+
+"
+" END:
+"
