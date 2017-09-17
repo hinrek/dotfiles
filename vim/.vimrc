@@ -241,21 +241,21 @@ let g:airline#extensions#ale#enabled = 1
 
 " PYTHON STUFF:
 au BufNewFile,BufRead *.py
-    \ set modeline |
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
+    \ setlocal modeline
+    \| setlocal tabstop=4
+    \| setlocal softtabstop=4
+    \| setlocal shiftwidth=4
+    \| setlocal textwidth=79
+    \| setlocal expandtab
+    \| setlocal autoindent
+    \| setlocal fileformat=unix
 
 
-" JAVASCRIPT HTML CSS:
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
+" HTML CSS JAVASCRIPT:
+au Filetype html,css,javascript
+    \ setlocal tabstop=2
+    \| setlocal softtabstop=2
+    \| setlocal shiftwidth=2
 
 
 "
