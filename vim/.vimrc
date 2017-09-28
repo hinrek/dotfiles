@@ -209,6 +209,8 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
 " FIX BACKSPACE:
 set backspace=indent,eol,start
 
+" SPACE FOR FOLDING:
+nnoremap <space> za
 
 " NERD TREE:
 map <C-n> :NERDTreeToggle<CR>
@@ -249,6 +251,9 @@ au BufNewFile,BufRead *.py
     \| setlocal expandtab
     \| setlocal autoindent
     \| setlocal fileformat=unix
+
+" PYTHON USE VIRTUALENV VENV:
+let g:ycm_python_binary_path='./venv/bin/python'
 
 
 " HTML CSS JAVASCRIPT:
