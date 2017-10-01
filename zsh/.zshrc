@@ -1,6 +1,9 @@
 # PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# Masterpassword
+export MPW_FULLNAME="Hinrek Saar"
+
 # The following lines were added by compinstall
 
 #zstyle ':completion:*' completer _complete _ignored
