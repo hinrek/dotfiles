@@ -27,6 +27,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'conradirwin/vim-bracketed-paste'
 
 
 " ALL PLUGINS BEFORE:
