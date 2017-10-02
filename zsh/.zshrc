@@ -32,7 +32,12 @@ colors
 export CLICOLOR=YES
 
 # Aliases
-alias ls='ls --color=auto --group-directories-first'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # You need to install 'brew install coreutils' for it to work
+    alias ls='gls --color=auto --group-directories-first'
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias ls='ls --color=auto --group-directories-first'
+fi
 
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
