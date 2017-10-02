@@ -1,5 +1,22 @@
+" CHECK SYSTEM TYPE:
+if !exists("g:os")
+    if has("win62") || has("win32") || has("win32")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
 " SET CORRECT SHELL:
-set shell=/usr/local/bin/zsh
+if has("gui_running")
+    if g:os == "Darwin"
+        set shell=/usr/local/bin/zsh
+    elseif g:os == "Linux"
+        set shell=/usr/bin/zsh
+    elseif g:os == "Windows"
+        " For windoosa
+    endif
+endif
 
 " BASIC STUFF:
 " turn vim into vim not vi
