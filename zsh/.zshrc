@@ -43,7 +43,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # For linux
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # Default editor
@@ -51,8 +51,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export EDITOR="/usr/local/bin/vim"
     export VISUAL="/usr/local/bin/vim"
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # For linux
+    export EDITOR="vim"
+    export VISUAL="vim"
 fi
-
-
-### END ###
