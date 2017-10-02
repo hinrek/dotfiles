@@ -47,5 +47,12 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 # Default editor
-export EDITOR="/usr/local/bin/vim"
-export VISUAL="/usr/local/bin/vim"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export EDITOR="/usr/local/bin/vim"
+    export VISUAL="/usr/local/bin/vim"
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # For linux
+fi
+
+
+### END ###
