@@ -12,7 +12,7 @@ if has("gui_running")
     if g:os == "Darwin"
         set shell=/usr/local/bin/zsh
     elseif g:os == "Linux"
-        set shell=/usr/bin/zsh
+        set shell=/bin/zsh
     elseif g:os == "Windows"
         " For windoosa
     endif
@@ -88,7 +88,7 @@ set laststatus=2
 let g:elite_mode=1
 
 " highlight of the current line
-set cursorline
+" set cursorline
 
 
 " TRY TO REMOVE TIMEOUT DELAYS:
@@ -97,7 +97,7 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " THEME AND STYLE:
 " to enable 256 colors in vim
-"set t_Co=256
+set t_Co=256
 
 " vim colors from terminal
 " set termguicolors
