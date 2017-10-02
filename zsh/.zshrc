@@ -1,14 +1,26 @@
 # PATH
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    #
+    # Dont change this in Arch Linux
+    # Look into ~/.zprofile
+    #
+fi
 
 # Masterpassword
 export MPW_FULLNAME="Hinrek Saar"
 
-# The following lines were added by compinstall
+# To unfreeze the terminal
+ttyctl -f
 
 #zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename '/Users/hinrek/.zshrc'
+# For autocompletion with an arrow-key driven interface
 zstyle ':completion:*' menu select
+# Rehash for new stuff in PATH
+zstyle ':completion:*' rehash true
+# For autocompletion of command line switches for aliases
 setopt COMPLETE_ALIASES
 
 autoload -Uz compinit promptinit colors
@@ -18,6 +30,9 @@ colors
 
 # Listcolors -ls
 export CLICOLOR=YES
+
+# Aliases
+alias ls='ls --color=auto --group-directories-first'
 
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
