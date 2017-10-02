@@ -1,4 +1,4 @@
-*
-vim/.vim/bundle/*
-vim/.vim/pack/*
-vim/.vim/syntax/*
+
+vim/.vim/bundle
+vim/.vim/pack
+vim/.vim/.netrwhist
