@@ -1,4 +1,7 @@
-# PATH
+#------------------------------------------------
+# Path
+#------------------------------------------------
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -8,8 +11,45 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     #
 fi
 
+#------------------------------------------------
 # Masterpassword
+#------------------------------------------------
+
 export MPW_FULLNAME="Hinrek Saar"
+
+#------------------------------------------------
+# Platform-specific Configuration
+#------------------------------------------------
+
+# Set $COLORTERM to truecolor for Iterm2
+if [[ "$TERM_PROGRAM" == "iTerm.app" || "$TERM_PROGRAM" == "Hyper" ]]; then
+    export COLORTERM=truecolor
+fi
+
+# Set 256 color and $COLORTERM to truecolor for mate-terminal
+if [[ "$COLORTERM" == "mate-terminal" ]]; then
+    export TERM=xterm-256color
+    export COLORTERM=truecolor
+fi
+
+# Set 256 color if this is an XFCE Terminal
+if [[ "$COLORTERM" == "xfce4-terminal" ]]; then
+    export TERM=xterm-256color
+fi
+
+#------------------------------------------------
+# Check Color Support
+#------------------------------------------------
+
+case "$TERM" in
+    xterm-color|xterm-256color)
+        color_prompt=yes
+        ;;
+esac
+
+#------------------------------------------------
+# Basic zsh settings
+#------------------------------------------------
 
 # To unfreeze the terminal
 ttyctl -f
@@ -28,13 +68,11 @@ compinit
 promptinit
 colors
 
-# Listcolors -ls
-export CLICOLOR=YES
-
 # Aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # You need to install 'brew install coreutils' for it to work
     alias ls='gls --color=auto --group-directories-first'
+    alias ll='gls -all --color=auto --group-directories-first'
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias ls='ls --color=auto --group-directories-first'
 fi
@@ -54,11 +92,17 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # This will set the default prompt to the walters theme
 prompt walters
 
-# for base16
+#------------------------------------------------
+# Base16 Shell
+#------------------------------------------------
+
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+#------------------------------------------------
 # For ZSH syntax highlighting
+#------------------------------------------------
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -66,7 +110,10 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+#------------------------------------------------
 # Default editor
+#------------------------------------------------
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export EDITOR="/usr/local/bin/vim"
     export VISUAL="/usr/local/bin/vim"

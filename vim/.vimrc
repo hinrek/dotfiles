@@ -8,17 +8,14 @@ if !exists("g:os")
 endif
 
 " SET CORRECT SHELL:
-if has("gui_running")
-    if g:os == "Darwin"
-        set shell=/usr/local/bin/zsh
-    elseif g:os == "Linux"
-        set shell=/bin/zsh
-    elseif g:os == "Windows"
-        " For windoosa
-    endif
+if g:os == "Darwin"
+    set shell=/usr/local/bin/zsh
+elseif g:os == "Linux"
+    set shell=/bin/zsh
+elseif g:os == "Windows"
+    " For windoosa
 endif
 
-" BASIC STUFF:
 " turn vim into vim not vi
 set nocompatible
 
@@ -50,6 +47,10 @@ Plugin 'conradirwin/vim-bracketed-paste'
 " ALL PLUGINS BEFORE:
 call vundle#end()
 
+" CLIPBOARD:
+if g:os == "Darwin"
+    set clipboard=unnamed
+endif
 
 " BASIC CONFIG:
 " enable line numbers and relative numbering
@@ -63,9 +64,6 @@ augroup numbertoggle
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
-
-" use 256 colors
-let base16colorspace=256 
 
 " enable syntax and plugins
 syntax enable
@@ -88,7 +86,7 @@ set laststatus=2
 let g:elite_mode=1
 
 " highlight of the current line
-" set cursorline
+set cursorline
 
 
 " TRY TO REMOVE TIMEOUT DELAYS:
@@ -96,16 +94,12 @@ set timeoutlen=1000 ttimeoutlen=0
 
 
 " THEME AND STYLE:
-" to enable 256 colors in vim
-set t_Co=256
-
-" vim colors from terminal
-" set termguicolors
-
-" vim theme (lifepillar/vim-solarized8)
-" colorscheme solarized8_dark
-colorscheme base16-flat
-
+"set t_Co=256
+" THEME BASED IN SHELL THEME:
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
 
 " BUFFERS:
 " To open a new empty buffer
@@ -131,10 +125,6 @@ let g:indentLine_leadingSpaceChar = '·'
 
 
 " FIXES:
-" small color fix
-"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 " enable italic font support
 let g:solarized_term_italics=1
 
