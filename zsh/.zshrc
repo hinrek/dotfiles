@@ -18,6 +18,14 @@ fi
 export MPW_FULLNAME="Hinrek Saar"
 
 #------------------------------------------------
+# Load User Functions
+#------------------------------------------------
+
+# Functions should be placed in ~/functions dir and in seperate files
+fpath=(~/functions $fpath)
+autoload mpw
+
+#------------------------------------------------
 # Platform-specific Configuration
 #------------------------------------------------
 
