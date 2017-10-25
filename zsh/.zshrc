@@ -4,6 +4,17 @@
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    # For Brew Go
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+    # Homebrew token, look in file ~/.brew_git_token
+    [ -f .brew_git_token ] && source .brew_git_token
+    #
+    # Littlebit nasty fix
+    # Try to add all from /etc/paths.d to Path, because /etc/profile not working (brew ffs)
+    #
+    if [ -x /usr/libexec/path_helper ]; then
+        eval `/usr/libexec/path_helper -s`
+    fi
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     #
     # Dont change this in Arch Linux
@@ -15,7 +26,8 @@ fi
 # Masterpassword
 #------------------------------------------------
 
-export MPW_FULLNAME="Hinrek Saar"
+# export MPW_FULLNAME="" from ~/.mpwrc
+[ -f .mpwrc ] && source .mpwrc
 
 #------------------------------------------------
 # Load User Functions
@@ -81,8 +93,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # You need to install 'brew install coreutils' for it to work
     alias ls='gls --color=auto --group-directories-first'
     alias ll='gls -all --color=auto --group-directories-first'
+    alias reload='source ~/.zshrc'
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias ls='ls --color=auto --group-directories-first'
+    alias reload='source ~/.zshrc'
 fi
 
 # End of lines added by compinstall
@@ -96,6 +110,7 @@ bindkey -v
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
+rm -f ~/.zcompdump; compinit
 
 # This will set the default prompt to the walters theme
 prompt walters
