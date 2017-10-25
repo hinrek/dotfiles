@@ -131,12 +131,6 @@ let g:solarized_term_italics=1
 " powerline fonts for vim-airline
 let g:airline_powerline_fonts=1
 
-" set the airline theme
-let g:airline_theme='base16'
-
-" setting the correct bg for solarized airline
-" let g:airline_solarized_bg='dark'
-
 " enable/disable enchanced tabline
 let g:airline#extensions#tabline#enable=1
 
