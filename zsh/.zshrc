@@ -97,6 +97,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias ls='ls --color=auto --group-directories-first'
     alias reload='source ~/.zshrc'
+    alias ll='ls -all --color=auto --group-directories-first'
 fi
 
 # End of lines added by compinstall
