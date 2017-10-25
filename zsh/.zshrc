@@ -6,8 +6,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     # For Brew Go
     export PATH=$PATH:/usr/local/opt/go/libexec/bin
-    # Homebrew token
-    export HOMEBREW_GITHUB_API_TOKEN="1b506b6f907bc97db1857bfb292d7e5139cc82a6"
+    # Homebrew token, look in file ~/.brew_git_token
+    [ -f .brew_git_token ] && source .brew_git_token
     #
     # Littlebit nasty fix
     # Try to add all from /etc/paths.d to Path, because /etc/profile not working (brew ffs)
