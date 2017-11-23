@@ -3,9 +3,11 @@
 #------------------------------------------------
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     # For Brew Go
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+    export GOPATH=$HOME/go
+    export GOROOT=/usr/local/opt/go/libexec
+    export PATH=$PATH:$GOPATH/bin
+    export PATH=$PATH:$GOROOT/bin
     # Homebrew token, look in file ~/.brew_git_token
     [ -f .brew_git_token ] && source .brew_git_token
     #
@@ -83,10 +85,12 @@ zstyle ':completion:*' rehash true
 # For autocompletion of command line switches for aliases
 setopt COMPLETE_ALIASES
 
-autoload -Uz compinit promptinit colors
+# autoload -Uz compinit promptinit colors
+autoload -Uz compinit compinit -i promptinit colors bashcompinit
 compinit
 promptinit
 colors
+bashcompinit
 
 # Aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -110,7 +114,9 @@ bindkey -v
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
-rm -f ~/.zcompdump; compinit
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+fpath=(~/.zsh/completion $fpath)
+rm -f ~/.zcompdump; compinit; bashcompinit
 
 # This will set the default prompt to the walters theme
 prompt walters
