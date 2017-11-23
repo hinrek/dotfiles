@@ -22,10 +22,8 @@ set nocompatible
 " set encoding
 set encoding=utf8
 
-
-" NEEDED FOR VUNDLE:
+" VUNDLE:
 filetype off
-" VUNDLE STUFF:
 " set the runtime path to include Vundle and init
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -42,6 +40,9 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'conradirwin/vim-bracketed-paste'
+Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 
 " ALL PLUGINS BEFORE:
@@ -57,6 +58,7 @@ endif
 set number
 set relativenumber
 set ruler
+set textwidth=80
 
 " line numbers & relative numbers on normal and insert mode
 augroup numbertoggle
@@ -187,6 +189,9 @@ command! MakeTags !ctags -R .
 " NOW WE CAN:
 " - Use ^n and ^p to go back and forth in the suggestions list
 
+" TAGBAR:
+" Use F8 to open tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " FILE BROWSING:
 " Tweaks for browsing
@@ -236,12 +241,12 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   'javascript': ['standard'],
 \   'python': ['autopep8'],
+\   'go': ['gofmt'],
 \}
 
 " ALE AIRLINE:
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
-
 
 " PYTHON STUFF:
 au BufNewFile,BufRead *.py
@@ -257,13 +262,14 @@ au BufNewFile,BufRead *.py
 " PYTHON USE VIRTUALENV VENV:
 let g:ycm_python_binary_path='./venv/bin/python'
 
-
 " HTML CSS JAVASCRIPT:
 au Filetype html,css,javascript
     \ setlocal tabstop=2
     \| setlocal softtabstop=2
     \| setlocal shiftwidth=2
 
+" VIM GO:
+let g:go_list_type = "quickfix"
 
 "
 " END:
