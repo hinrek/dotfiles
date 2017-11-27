@@ -58,7 +58,7 @@ endif
 set number
 set relativenumber
 set ruler
-set textwidth=80
+set textwidth=79
 
 " line numbers & relative numbers on normal and insert mode
 augroup numbertoggle
