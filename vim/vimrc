@@ -54,7 +54,7 @@ call vundle#end()
 
 " CLIPBOARD:
 if g:os == "Darwin"
-    set clipboard=unnamed
+    set clipboard+=unnamed
 endif
 
 " BASIC CONFIG:
@@ -247,9 +247,10 @@ set backspace=indent,eol,start
 " FOLDS:
 " Space for folding
 nnoremap <space> za
-set foldmethod=indent           " Fold based on indent.
+set foldmethod=syntax           " Fold based on indent or syntax.
 set foldnestmax=3               " Limit folds to three levels of depth.
 set foldenable                  " Fold by default.
+set foldlevel=99
 
 " SCROLLING:
 set scrolloff=8                 " Minimal number of screen lines to keep above and below the cursor.
