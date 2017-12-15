@@ -20,7 +20,7 @@ elseif g:os == "Windows"
     " For windoosa
 endif
 
-" ENCODING: 
+" ENCODING:
 set encoding=utf8
 
 " VUNDLE:
