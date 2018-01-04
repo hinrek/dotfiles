@@ -17,6 +17,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -x /usr/libexec/path_helper ]; then
         eval `/usr/libexec/path_helper -s`
     fi
+    # Brew python2.7
+    export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     #
     # Dont change this in Arch Linux
