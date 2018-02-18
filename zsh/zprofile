@@ -1,2 +1,4 @@
 typeset -U path
 path=(~/bin /other/things/in/path $path[@])
+
+export PATH="$HOME/.cargo/bin:$PATH"
